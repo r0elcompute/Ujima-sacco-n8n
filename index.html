@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujima SACCO Portal — Boresha Biashara Yako</title>
+    <style>
+        :root {
+            --primary: #1e5e3a; /* Deep African Green for growth & trust */
+            --primary-light: #e8f5e9;
+            --accent: #d4af37; /* Warm Gold representing harvest & liquidity */
+            --dark: #2c3e50;
+            --light: #f9f9f9;
+            --border: #e0e0e0;
+            --error: #c0392b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header h1 span {
+            color: var(--accent);
+        }
+
+        .tagline {
+            color: white;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .intro-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent);
+        }
+
+        .intro-card h2 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .intro-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h3 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1.2rem 0;
+            font-size: 1.25rem;
+        }
+
+        h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(30, 94, 58, 0.15);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .checkbox-group {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-weight: normal;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 0.8rem;
+        }
+
+        .checkbox-label:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            margin-top: 0.2rem;
+            transform: scale(1.1);
+        }
+
+        /* Ethical Consent Block Custom Styling */
+        .ethical-consent-box {
+            background-color: #fffde7;
+            border: 1px solid #fff59d;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2.5rem 0 1.5rem 0;
+        }
+
+        .ethical-consent-box p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .ethical-consent-box a {
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(30, 94, 58, 0.2);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #154228;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            color: #888;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Micro-interactions: dynamic visual hint for the HUNT trigger */
+        .hunt-hint {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 0.3rem;
+            display: block;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            main {
+                margin: 1.5rem auto;
+            }
+            form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ujima<span>SACCO</span></h1>
+        <div class="tagline">Mwangaza wa Biashara Yako</div>
+    </header>
+
+    <main>
+        <div class="intro-card">
+            <h2>Karibu kwenye Jukwaa la Mikopo la Ujima</h2>
+            <p>We believe in the power of your business cash velocity, not just formal payslips. Complete this adaptive request portal. Our decentralized multi-agent system processes smallholder and market trader inputs in real time, respecting seasonal cycles and absolute data dignity.</p>
+        </div>
+
+        <form action="https://r0el.app.n8n.cloud/webhook-test/e1f69293-7a58-40da-b6f1-8096300e99ee" method="POST">
+            
+            <h3>1. Wasifu wa Mwanachama (Member Profile)</h3>
+            
+            <div class="form-group">
+                <label for="fullName">Full Name / Jina Kamili</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g., Grace Auma Okoth" required>
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="marketLocation">Primary Market / Eneo la Kazi</label>
+                    <select id="marketLocation" name="marketLocation" required>
+                        <option value="" disabled selected>Select your market center...</option>
+                        <option value="Kongowea Market">Kongowea Market</option>
+                        <option value="Marikiti Mombasa">Marikiti Mombasa</option>
+                        <option value="Bamburi Central">Bamburi Central</option>
+                        <option value="Miritini Junction">Miritini Junction</option>
+                        <option value="Likoni Mainland">Likoni Mainland</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="occupation">Primary Trade Type / Kazi Yako</label>
+                    <select id="occupation" name="occupation" required>
+                        <option value="" disabled selected>Select your trade...</option>
+                        <option value="Informal Market Vendor">Informal Market Vendor (Mama Mboga / Fruit)</option>
+                        <option value="Agricultural Wholesaler">Agricultural Wholesaler (Matooke / Maize)</option>
+                        <option value="Boda Boda Operator">Boda Boda / Logistics Operator</option>
+                        <option value="Chama Retail Trader">Chama Retail Textile Trader</option>
+                        <option value="Formal Employee">Formal Salaried Employee</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3>2. Mzunguko wa Fedha na Mavuno (Seasonal Cash Flow Dynamics)</h3>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">We use these vectors to realign your payments with actual liquidity spikes instead of rigid 30-day corporate schedules.</p>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="weeklyRevenue">Average Weekly Revenue (KES)</label>
+                    <input type="number" id="weeklyRevenue" name="weeklyRevenue" min="0" placeholder="e.g., 8500" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dependents">Household Dependents Count</label>
+                    <input type="number" id="dependents" name="dependents" min="0" max="20" placeholder="Number of children/dependents" required>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Peak Liquidity Months (Mavuno Nyingi)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" name="peakMonths" value="March-April"> March / April (Main Crop Harvest)</label>
+                        <label class="checkbox-label"><input type="checkbox" name="peakMonths" value="Sept-Oct"> Sept / Oct (Short Rains Harvest)</label>
+                        <label class="checkbox-label"><input type="checkbox" name="peakMonths" value="Dec-Jan"> Dec / Jan (Festive Trade Spikes)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Lean Cash Flow Months (Wakati wa Kipato Chini)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" name="leanMonths" value="Jan-Feb"> Jan / Feb (School Fees Pressures)</label>
+                        <label class="checkbox-label"><input type="checkbox" name="leanMonths" value="May-June"> May / June (Heavy Rains / Minimal Traffic)</label>
+                        <label class="checkbox-label"><input type="checkbox" name="leanMonths" value="August"> August (Pre-harvest Lull)</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>3. Ombi la Mkopo (Loan Particulars)</h3>
+
+            <div class="form-group">
+                <label for="loanAmount">Requested Amount / Kiasi cha Mkopo (KES)</label>
+                <input type="number" id="loanAmount" name="loanAmount" min="1000" max="250000" placeholder="e.g., 12000" required>
+                <span class="hunt-hint">* Note: Amounts ≤ KES 15,000 are triaged directly by our digital Guardian Agent for fast settlement. Greater amounts route to the Hunter Agent for Human-in-the-Loop context matching.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="loanPurpose">Detailed Purpose of Funds / Sababu ya Mkopo</label>
+                <textarea id="loanPurpose" name="loanPurpose" rows="3" placeholder="Tell us how these funds will stabilize your crop stock or business cycle..." required></textarea>
+            </div>
+
+            <div class="ethical-consent-box">
+                <label class="checkbox-label" style="font-weight: bold; margin-bottom: 0.5rem;">
+                    <input type="checkbox" name="dpaConsent" value="Accepted" required>
+                    I Accept data profiling terms / Nakubali Masharti ya Data
+                </label>
+                <p>By submitting, you explicitly opt into Ujima SACCO's localized analytics pipeline. In absolute obedience to the <strong>Kenya Data Protection Act 2022</strong>, your personal identifiable information (PII) is encrypted, highly anonymized to maintain your village privacy (k-anonymity), and strictly hosted locally within the sovereign <strong>AWS Africa (Cape Town) region</strong>. Your records will never be exported to train foreign datasets.</p>
+            </div>
+
+            <button type="submit">Wasilisha Ombi (Submit Application to Multi-Agent Ecosystem)</button>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2026 Ujima SACCO Co-operative Society Ltd. Regulated by SASRA. Built under the Ethical Safari Frameworks.</p>
+    </footer>
+
+</body>
+</html>
