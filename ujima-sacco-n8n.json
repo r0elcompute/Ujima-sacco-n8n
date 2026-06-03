@@ -1,0 +1,326 @@
+{
+  "name": "ujima-sacco-n8n",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "e1f69293-7a58-40da-b6f1-8096300e99ee",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "968c6e33-5836-4bee-a0fb-4a19cfaad15c",
+      "name": "Webhook",
+      "webhookId": "e1f69293-7a58-40da-b6f1-8096300e99ee"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2b72cc98-a1c7-4596-9821-1687a0f05cff",
+              "leftValue": "={{ $json.body.loanAmount.toNumber() }}",
+              "rightValue": 15000,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1d9732a6-a5c4-4b91-9975-d2dc3290cb2a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q",
+          "mode": "list",
+          "cachedResultName": "UJIMA SACCO AI LEDGER",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "AI Decision Tier": "Guardian (Auto-Triage)",
+            "Name": "={{ $json.body.fullName }}",
+            "Market": "={{ $json.body.marketLocation }}",
+            "Trade Type": "={{ $json.body.occupation }}",
+            "Weekly Revenue": "={{ $json.body.weeklyRevenue }}",
+            "Loan Amount": "={{ $json.body.loanAmount }}",
+            "Dpa Consent": "={{ $json.body.dpaConsent }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Market",
+              "displayName": "Market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trade Type",
+              "displayName": "Trade Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Weekly Revenue",
+              "displayName": "Weekly Revenue",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loan Amount",
+              "displayName": "Loan Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dpa Consent",
+              "displayName": "Dpa Consent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Decision Tier",
+              "displayName": "AI Decision Tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        -96
+      ],
+      "id": "b52d16e2-37fc-40cc-a17b-bdecb5348afa",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fLCqL63n4qCvGY0Q",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q",
+          "mode": "list",
+          "cachedResultName": "UJIMA SACCO AI LEDGER",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.body.fullName }}",
+            "Market": "={{ $json.body.marketLocation }}",
+            "Trade Type": "={{ $json.body.occupation }}",
+            "Weekly Revenue": "={{ $json.body.weeklyRevenue }}",
+            "Loan Amount": "={{ $json.body.loanAmount }}",
+            "Dpa Consent": "={{ $json.body.dpaConsent }}",
+            "AI Decision Tier": "Hunter (Human-in-the-Loop)"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Market",
+              "displayName": "Market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trade Type",
+              "displayName": "Trade Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Weekly Revenue",
+              "displayName": "Weekly Revenue",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loan Amount",
+              "displayName": "Loan Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dpa Consent",
+              "displayName": "Dpa Consent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Decision Tier",
+              "displayName": "AI Decision Tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        96
+      ],
+      "id": "08875d84-8a4f-4e9f-92df-6882e3a76879",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fLCqL63n4qCvGY0Q",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "12dcc316-68bd-4a35-aa7e-45675674feb5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2a4dad0adf3ce632301791224f1477d8e484086775cd783fd1557f666b526268"
+  },
+  "id": "efV3rGZMN3c3o5cw",
+  "tags": []
+}
