@@ -1,354 +1,1397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ujima SACCO Portal — Boresha Biashara Yako</title>
-    <style>
-        :root {
-            --primary: #1e5e3a; /* Deep African Green for growth & trust */
-            --primary-light: #e8f5e9;
-            --accent: #d4af37; /* Warm Gold representing harvest & liquidity */
-            --dark: #2c3e50;
-            --light: #f9f9f9;
-            --border: #e0e0e0;
-            --error: #c0392b;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ujima SACCO — Boresha Biashara Yako</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f4f6f8;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        header h1 span {
-            color: var(--accent);
-        }
-
-        .tagline {
-            color: white;
-            font-size: 0.9rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-        }
-
-        main {
-            max-width: 850px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .intro-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--accent);
-        }
-
-        .intro-card h2 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .intro-card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        form {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        h3 {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary-light);
-            padding-bottom: 0.5rem;
-            margin: 2rem 0 1.2rem 0;
-            font-size: 1.25rem;
-        }
-
-        h3:first-of-type {
-            margin-top: 0;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background-color: #fafafa;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background-color: white;
-            box-shadow: 0 0 0 3px rgba(30, 94, 58, 0.15);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .checkbox-group {
-            background: var(--light);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-weight: normal;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-bottom: 0.8rem;
-        }
-
-        .checkbox-label:last-child {
-            margin-bottom: 0;
-        }
-
-        .checkbox-label input[type="checkbox"] {
-            margin-top: 0.2rem;
-            transform: scale(1.1);
-        }
-
-        /* Ethical Consent Block Custom Styling */
-        .ethical-consent-box {
-            background-color: #fffde7;
-            border: 1px solid #fff59d;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2.5rem 0 1.5rem 0;
-        }
-
-        .ethical-consent-box p {
-            font-size: 0.85rem;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .ethical-consent-box a {
-            color: var(--primary);
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        button[type="submit"] {
-            display: block;
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 10px rgba(30, 94, 58, 0.2);
-        }
-
-        button[type="submit"]:hover {
-            background-color: #154228;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding: 2rem 0;
-            color: #888;
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Micro-interactions: dynamic visual hint for the HUNT trigger */
-        .hunt-hint {
-            font-size: 0.8rem;
-            color: #777;
-            margin-top: 0.3rem;
-            display: block;
-            font-style: italic;
-        }
-
-        @media (max-width: 600px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 0;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"DM Serif Display"', 'Georgia', 'serif'],
+            sans: ['"DM Sans"', 'sans-serif'],
+            mono: ['"DM Mono"', 'monospace'],
+          },
+          colors: {
+            forest: {
+              50:  '#edf7f1',
+              100: '#d1ecdc',
+              200: '#a4d9ba',
+              300: '#6fbf8f',
+              400: '#3da366',
+              500: '#1e8049',
+              600: '#166038',
+              700: '#114a2b',
+              800: '#0c3520',
+              900: '#071a10',
+            },
+            amber: {
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            gold: {
+              DEFAULT: '#c9a84c',
+              light: '#e8c97a',
+              dark: '#9a7326',
             }
-            main {
-                margin: 1.5rem auto;
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease forwards',
+            'fade-in': 'fadeIn 0.5s ease forwards',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+            'spin-slow': 'spin 3s linear infinite',
+            'shimmer': 'shimmer 2s infinite',
+            'tick': 'tick 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            tick: {
+              '0%': { transform: 'scale(0)', opacity: '0' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
             }
-            form {
-                padding: 1.5rem;
-            }
+          }
         }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #f5f5f0; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f5f5f0; }
+    ::-webkit-scrollbar-thumb { background: #166038; border-radius: 3px; }
+
+    /* Step wizard progress line */
+    .step-connector {
+      position: absolute;
+      top: 50%;
+      left: calc(50% + 20px);
+      width: calc(100% - 40px);
+      height: 2px;
+      background: #d1ecdc;
+      transform: translateY(-50%);
+      z-index: 0;
+      transition: background 0.4s ease;
+    }
+    .step-connector.done { background: #166038; }
+
+    /* Animated progress bar */
+    .progress-bar-inner {
+      background: linear-gradient(90deg, #166038, #3da366, #c9a84c, #166038);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+
+    /* Input focus ring */
+    .field-input {
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .field-input:focus {
+      outline: none;
+      border-color: #166038;
+      box-shadow: 0 0 0 3px rgba(22, 96, 56, 0.12);
+      background: #fff;
+    }
+    .field-input.error {
+      border-color: #e11d48;
+      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.10);
+    }
+
+    /* Custom checkbox */
+    .custom-checkbox {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #a4d9ba;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: all 0.2s;
+      background: #fff;
+    }
+    .custom-checkbox:checked {
+      background: #166038;
+      border-color: #166038;
+    }
+    .custom-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      width: 6px;
+      height: 10px;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg);
+    }
+
+    /* Dot pattern bg */
+    .dot-bg {
+      background-image: radial-gradient(circle, rgba(201,168,76,0.15) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Number step circle */
+    .step-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .step-circle.inactive { background: #f5f5f0; color: #9ca3af; border: 2px solid #e5e7eb; }
+    .step-circle.active { background: #166038; color: #fff; border: 2px solid #166038; box-shadow: 0 0 0 5px rgba(22,96,56,0.15); }
+    .step-circle.done { background: #166038; color: #fff; border: 2px solid #166038; }
+
+    /* Agent simulation step */
+    .sim-step { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: 10px; transition: all 0.3s; }
+    .sim-step.pending { opacity: 0.45; }
+    .sim-step.running { background: rgba(22,96,56,0.07); opacity: 1; }
+    .sim-step.done { background: rgba(22,96,56,0.05); opacity: 1; }
+
+    /* Phone mockup */
+    .phone-frame {
+      background: #0f0f0f;
+      border-radius: 44px;
+      padding: 14px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+      border: 2px solid #222;
+    }
+    .phone-screen {
+      background: #1a1a1a;
+      border-radius: 32px;
+      overflow: hidden;
+      min-height: 280px;
+    }
+    .phone-notch {
+      width: 100px;
+      height: 28px;
+      background: #0f0f0f;
+      border-radius: 0 0 20px 20px;
+      margin: 0 auto;
+    }
+
+    /* Receipt card */
+    .receipt-card {
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 10px,
+        rgba(22,96,56,0.02) 10px,
+        rgba(22,96,56,0.02) 20px
+      ), white;
+    }
+    .receipt-edge::before, .receipt-edge::after {
+      content: '';
+      display: block;
+      height: 12px;
+      background: radial-gradient(circle at 50% 0, #f5f5f0 6px, transparent 6px),
+                  radial-gradient(circle at 50% 100%, #f5f5f0 6px, transparent 6px);
+      background-size: 24px 12px;
+      background-color: transparent;
+    }
+
+    /* Gold shimmer text */
+    .gold-text {
+      background: linear-gradient(90deg, #c9a84c, #e8c97a, #c9a84c);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s infinite;
+    }
+
+    /* Hover lift card */
+    .lift-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .lift-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.10); }
+
+    /* Section reveal animation */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Gradient border */
+    .gradient-border {
+      position: relative;
+      background: white;
+      border-radius: 16px;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 17px;
+      background: linear-gradient(135deg, #166038, #3da366, #c9a84c);
+      z-index: -1;
+    }
+
+    /* Toggle between steps */
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeUp 0.4s ease forwards; }
+  </style>
 </head>
-<body>
 
-    <header>
-        <h1>Ujima<span>SACCO</span></h1>
-        <div class="tagline">Mwangaza wa Biashara Yako</div>
-    </header>
+<body class="font-sans text-forest-900 antialiased">
 
-    <main>
-        <div class="intro-card">
-            <h2>Karibu kwenye Jukwaa la Mikopo la Ujima</h2>
-            <p>We believe in the power of your business cash velocity, not just formal payslips. Complete this adaptive request portal. Our decentralized multi-agent system processes smallholder and market trader inputs in real time, respecting seasonal cycles and absolute data dignity.</p>
+  <!-- ================================================================
+       NAVIGATION
+  ================================================================ -->
+  <nav class="sticky top-0 z-50 border-b border-forest-800/20" style="background: rgba(12,53,32,0.97); backdrop-filter: blur(20px);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-[72px]">
+
+        <!-- Brand -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-md" style="background: linear-gradient(135deg, #c9a84c, #e8c97a);">
+            <i class="fa-solid fa-building-columns text-forest-900 text-base"></i>
+          </div>
+          <div>
+            <div class="font-display text-xl text-white leading-none">Ujima<span class="gold-text">SACCO</span></div>
+            <div class="font-mono text-[9px] tracking-[0.15em] uppercase text-forest-300 mt-0.5">Decentralized Trust Platform</div>
+          </div>
+        </a>
+
+        <!-- Nav Links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#about" class="text-sm font-medium text-forest-200 hover:text-white transition-colors duration-150">Why Ujima</a>
+          <a href="#portal" class="text-sm font-medium text-forest-200 hover:text-white transition-colors duration-150">Apply</a>
+          <a href="#portal" class="flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200"
+             style="background: linear-gradient(135deg, #c9a84c, #e8c97a); color: #0c3520;">
+            <i class="fa-solid fa-vault text-xs"></i> Member Portal
+          </a>
         </div>
 
-        <form action="https://r0el.app.n8n.cloud/webhook/e1f69293-7a58-40da-b6f1-8096300e99ee" method="POST">
-            
-            <h3>1. Wasifu wa Mwanachama (Member Profile)</h3>
-            
-            <div class="form-group">
-                <label for="fullName">Full Name / Jina Kamili</label>
-                <input type="text" id="fullName" name="fullName" placeholder="e.g., Grace Auma Okoth" required>
-            </div>
+        <!-- Status pill -->
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-forest-700/50" style="background: rgba(22,96,56,0.3);">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+          <span class="font-mono text-[10px] font-bold tracking-widest text-emerald-300 uppercase">Live</span>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-            <div class="grid-2">
-                <div class="form-group">
-                    <label for="marketLocation">Primary Market / Eneo la Kazi</label>
-                    <select id="marketLocation" name="marketLocation" required>
-                        <option value="" disabled selected>Select your market center...</option>
-                        <option value="Kongowea Market">Kongowea Market</option>
-                        <option value="Marikiti Mombasa">Marikiti Mombasa</option>
-                        <option value="Bamburi Central">Bamburi Central</option>
-                        <option value="Miritini Junction">Miritini Junction</option>
-                        <option value="Likoni Mainland">Likoni Mainland</option>
-                    </select>
+
+  <!-- ================================================================
+       HERO SECTION
+  ================================================================ -->
+  <section id="hero" class="relative overflow-hidden dot-bg" style="background: #0c3520; min-height: 92vh; display: flex; align-items: center;">
+    <!-- Decorative glows -->
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(22,96,56,0.4) 0%, transparent 70%);"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none opacity-5" style="background: radial-gradient(circle, #c9a84c 0%, transparent 60%);"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+        <!-- Copy -->
+        <div class="lg:col-span-7 space-y-8">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-semibold uppercase tracking-widest font-mono"
+               style="background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: #e8c97a;">
+            <span class="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+            Powered by Multi-Agent AI Network
+          </div>
+
+          <h2 class="font-display text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight">
+            Boresha <em>Biashara</em><br>
+            Yako,<br>
+            <span class="gold-text">On Your Terms.</span>
+          </h2>
+
+          <p class="text-forest-200 text-lg leading-relaxed max-w-xl font-light">
+            We don't look at payslips. Our AI network reads the <strong class="text-white font-medium">speed and velocity</strong> of your daily trade cycle — fair funding for every merchant in Kenya.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="#portal" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl font-bold text-forest-900 shadow-xl transition-all duration-200 hover:scale-105 active:scale-100"
+               style="background: linear-gradient(135deg, #c9a84c, #e8c97a);">
+              <i class="fa-solid fa-paper-plane text-sm"></i>
+              Launch Member Portal
+            </a>
+            <a href="#about" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl font-semibold text-white border border-white/15 hover:bg-white/10 transition-all duration-200"
+               style="background: rgba(255,255,255,0.05);">
+              How It Works <i class="fa-solid fa-arrow-down text-xs ml-1"></i>
+            </a>
+          </div>
+
+          <!-- Trust badges -->
+          <div class="flex flex-wrap items-center gap-6 pt-2">
+            <div class="flex items-center gap-2 text-forest-300 text-xs font-medium">
+              <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+              DPA 2022 Compliant
+            </div>
+            <div class="flex items-center gap-2 text-forest-300 text-xs font-medium">
+              <i class="fa-solid fa-lock text-emerald-400"></i>
+              AES-256 Encrypted
+            </div>
+            <div class="flex items-center gap-2 text-forest-300 text-xs font-medium">
+              <i class="fa-solid fa-map-pin text-emerald-400"></i>
+              Kenya Sovereign Hosting
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats card -->
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl border overflow-hidden" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); backdrop-filter: blur(20px);">
+            <div class="p-6 border-b" style="border-color: rgba(255,255,255,0.08);">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-forest-300 uppercase tracking-widest font-bold">Network Activity Index</span>
+                <span class="flex items-center gap-1.5 text-xs text-emerald-400 font-mono font-bold">
+                  <i class="fa-solid fa-signal text-[10px]"></i> LIVE
+                </span>
+              </div>
+            </div>
+            <div class="p-6 grid grid-cols-2 gap-4">
+              <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.05);">
+                <div class="font-display text-2xl text-white">KES 24.8M</div>
+                <div class="text-[10px] text-forest-400 uppercase tracking-wider font-bold mt-1">Liquidity Pool</div>
+              </div>
+              <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.05);">
+                <div class="font-display text-2xl text-emerald-400">1.8s</div>
+                <div class="text-[10px] text-forest-400 uppercase tracking-wider font-bold mt-1">Avg Approval</div>
+              </div>
+              <div class="col-span-2 p-4 rounded-2xl space-y-3" style="background: rgba(255,255,255,0.05);">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-forest-300 font-semibold">Agent Triage Capacity</span>
+                  <span class="font-mono text-sm font-bold text-amber-400">98.4%</span>
                 </div>
-
-                <div class="form-group">
-                    <label for="occupation">Primary Trade Type / Kazi Yako</label>
-                    <select id="occupation" name="occupation" required>
-                        <option value="" disabled selected>Select your trade...</option>
-                        <option value="Informal Market Vendor">Informal Market Vendor (Mama Mboga / Fruit)</option>
-                        <option value="Agricultural Wholesaler">Agricultural Wholesaler (Matooke / Maize)</option>
-                        <option value="Boda Boda Operator">Boda Boda / Logistics Operator</option>
-                        <option value="Chama Retail Trader">Chama Retail Textile Trader</option>
-                        <option value="Formal Employee">Formal Salaried Employee</option>
-                    </select>
+                <div class="h-2 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.1);">
+                  <div class="h-full rounded-full progress-bar-inner" style="width: 98.4%;"></div>
                 </div>
-            </div>
-
-            <h3>2. Mzunguko wa Fedha na Mavuno (Seasonal Cash Flow Dynamics)</h3>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">We use these vectors to realign your payments with actual liquidity spikes instead of rigid 30-day corporate schedules.</p>
-
-            <div class="grid-2">
-                <div class="form-group">
-                    <label for="weeklyRevenue">Average Weekly Revenue (KES)</label>
-                    <input type="number" id="weeklyRevenue" name="weeklyRevenue" min="0" placeholder="e.g., 8500" required>
+              </div>
+              <div class="col-span-2 p-4 rounded-2xl" style="background: rgba(255,255,255,0.05);">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs text-forest-300 font-semibold">Disbursement Distribution</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="dependents">Household Dependents Count</label>
-                    <input type="number" id="dependents" name="dependents" min="0" max="20" placeholder="Number of children/dependents" required>
+                <div class="flex gap-1">
+                  <div class="h-6 rounded-l-full" style="background: #166038; width: 55%; transition: width 1s ease;"></div>
+                  <div class="h-6" style="background: #c9a84c; width: 30%;"></div>
+                  <div class="h-6 rounded-r-full" style="background: #3da366; width: 15%;"></div>
                 </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="form-group">
-                    <label>Peak Liquidity Months (Mavuno Nyingi)</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" name="peakMonths" value="March-April"> March / April (Main Crop Harvest)</label>
-                        <label class="checkbox-label"><input type="checkbox" name="peakMonths" value="Sept-Oct"> Sept / Oct (Short Rains Harvest)</label>
-                        <label class="checkbox-label"><input type="checkbox" name="peakMonths" value="Dec-Jan"> Dec / Jan (Festive Trade Spikes)</label>
-                    </div>
+                <div class="flex gap-4 mt-2">
+                  <span class="text-[10px] text-forest-300 flex items-center gap-1"><span class="inline-block w-2 h-2 rounded-full" style="background:#166038;"></span>Mama Mboga 55%</span>
+                  <span class="text-[10px] text-forest-300 flex items-center gap-1"><span class="inline-block w-2 h-2 rounded-full" style="background:#c9a84c;"></span>Agri 30%</span>
+                  <span class="text-[10px] text-forest-300 flex items-center gap-1"><span class="inline-block w-2 h-2 rounded-full" style="background:#3da366;"></span>Boda 15%</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                <div class="form-group">
-                    <label>Lean Cash Flow Months (Wakati wa Kipato Chini)</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" name="leanMonths" value="Jan-Feb"> Jan / Feb (School Fees Pressures)</label>
-                        <label class="checkbox-label"><input type="checkbox" name="leanMonths" value="May-June"> May / June (Heavy Rains / Minimal Traffic)</label>
-                        <label class="checkbox-label"><input type="checkbox" name="leanMonths" value="August"> August (Pre-harvest Lull)</label>
-                    </div>
+    <!-- Wave divider -->
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block; height:60px; width:100%;">
+        <path d="M0,40 C360,0 720,60 1080,20 C1260,0 1380,30 1440,40 L1440,60 L0,60 Z" fill="#f5f5f0"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       ABOUT / HOW IT WORKS
+  ================================================================ -->
+  <section id="about" class="py-24 px-4 sm:px-6 lg:px-8" style="background: #f5f5f0;">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+        <span class="inline-block font-mono text-xs tracking-[0.2em] uppercase font-bold text-gold mb-4" style="color: #c9a84c;">How It Works</span>
+        <h2 class="font-display text-4xl sm:text-5xl text-forest-900 leading-tight">A Human-Centered<br><em>Financial Engine</em></h2>
+        <p class="mt-4 text-forest-600 leading-relaxed">Designed for local trade constraints, seasonal variations, and modern data sovereignty.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+
+        <div class="lift-card bg-white rounded-3xl p-7 border border-forest-100 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg, #edf7f1, #d1ecdc);">
+            <i class="fa-solid fa-rotate text-xl" style="color: #166038;"></i>
+          </div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-forest-400 mb-2 font-bold">Module 01</div>
+          <h3 class="font-display text-xl text-forest-900 mb-3">Seasonal Alignment</h3>
+          <p class="text-sm text-forest-600 leading-relaxed">Our appraisal maps repayment structures precisely to high-traffic harvest months, reducing demands during lean seasonal intervals.</p>
+        </div>
+
+        <div class="lift-card bg-white rounded-3xl p-7 border border-forest-100 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg, #edf7f1, #d1ecdc);">
+            <i class="fa-solid fa-shield-halved text-xl" style="color: #166038;"></i>
+          </div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-forest-400 mb-2 font-bold">Module 02</div>
+          <h3 class="font-display text-xl text-forest-900 mb-3">Ethical Sovereign Storage</h3>
+          <p class="text-sm text-forest-600 leading-relaxed">100% compliant with Kenya's Data Protection Act 2022. Metrics are isolated, AES-256 encrypted, and hosted on continental cloud nodes.</p>
+        </div>
+
+        <div class="lift-card bg-white rounded-3xl p-7 border border-forest-100 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg, #edf7f1, #d1ecdc);">
+            <i class="fa-solid fa-bolt text-xl" style="color: #166038;"></i>
+          </div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-forest-400 mb-2 font-bold">Module 03</div>
+          <h3 class="font-display text-xl text-forest-900 mb-3">Dual-Agent Triage</h3>
+          <p class="text-sm text-forest-600 leading-relaxed">Applications filter into two vectors: <strong>Guardian Agent</strong> instant machine scoring, or <strong>Hunter Agent</strong> human context matching for larger amounts.</p>
+        </div>
+      </div>
+
+      <!-- Process timeline -->
+      <div class="mt-16 bg-white rounded-3xl border border-forest-100 shadow-sm p-8 reveal">
+        <h3 class="font-display text-2xl text-forest-900 mb-8 text-center">The Appraisal Journey</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 relative">
+          <div class="text-center space-y-3">
+            <div class="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center font-bold text-white text-lg" style="background: #166038;">1</div>
+            <div class="font-semibold text-sm text-forest-800">Submit Form</div>
+            <div class="text-xs text-forest-500">Encrypted payload sent to n8n pipeline</div>
+          </div>
+          <div class="text-center space-y-3">
+            <div class="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center font-bold text-white text-lg" style="background: #1e8049;">2</div>
+            <div class="font-semibold text-sm text-forest-800">DPA Validation</div>
+            <div class="text-xs text-forest-500">Sovereignty & compliance checks pass</div>
+          </div>
+          <div class="text-center space-y-3">
+            <div class="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center font-bold text-white text-lg" style="background: #3da366;">3</div>
+            <div class="font-semibold text-sm text-forest-800">Agent Triage</div>
+            <div class="text-xs text-forest-500">Guardian or Hunter path selected</div>
+          </div>
+          <div class="text-center space-y-3">
+            <div class="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center font-bold text-forest-900 text-lg" style="background: linear-gradient(135deg, #c9a84c, #e8c97a);">4</div>
+            <div class="font-semibold text-sm text-forest-800">SMS Decision</div>
+            <div class="text-xs text-forest-500">Result delivered to your phone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       PORTAL — MULTI-STEP FORM
+  ================================================================ -->
+  <section id="portal" class="py-24 px-4 sm:px-6 lg:px-8" style="background: #eef2ee;">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Section header -->
+      <div class="text-center mb-12 reveal">
+        <span class="inline-block font-mono text-xs tracking-[0.2em] uppercase font-bold mb-3" style="color: #c9a84c;">Secure Application</span>
+        <h2 class="font-display text-4xl sm:text-5xl text-forest-900">Credit Appraisal Submission</h2>
+        <p class="mt-3 text-forest-600 text-sm">Form UJ-2026 &nbsp;·&nbsp; Authorized Region: Mombasa, Kenya &nbsp;·&nbsp; <i class="fa-solid fa-map-pin text-amber-500"></i></p>
+      </div>
+
+      <!-- ============ FORM CARD ============ -->
+      <div id="formCard" class="bg-white rounded-3xl shadow-xl border border-forest-100 overflow-hidden">
+
+        <!-- Step Progress Indicator -->
+        <div class="px-6 sm:px-8 pt-8 pb-0">
+          <div class="flex items-center justify-between mb-8" id="stepIndicator">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center gap-1.5 flex-1">
+              <div class="step-circle active" id="sc1">1</div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-center hidden sm:block" style="color: #166038;" id="sl1">Profile</span>
+            </div>
+            <!-- Connector 1-2 -->
+            <div class="flex-1 h-0.5 -mt-4 mx-1 transition-all duration-500" style="background: #d1ecdc;" id="conn1"></div>
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center gap-1.5 flex-1">
+              <div class="step-circle inactive" id="sc2">2</div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-center hidden sm:block text-slate-400" id="sl2">Cash Flow</span>
+            </div>
+            <!-- Connector 2-3 -->
+            <div class="flex-1 h-0.5 -mt-4 mx-1 transition-all duration-500" style="background: #d1ecdc;" id="conn2"></div>
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center gap-1.5 flex-1">
+              <div class="step-circle inactive" id="sc3">3</div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-center hidden sm:block text-slate-400" id="sl3">Loan</span>
+            </div>
+          </div>
+          <!-- Progress bar -->
+          <div class="h-1.5 rounded-full overflow-hidden mb-0" style="background: #d1ecdc;">
+            <div class="h-full rounded-full transition-all duration-500 progress-bar-inner" id="progressBar" style="width: 33%;"></div>
+          </div>
+        </div>
+
+        <form id="ujimaForm" novalidate method="POST" action="https://r0el.app.n8n.cloud/webhook/e1f69293-7a58-40da-b6f1-8096300e99ee">
+          <!-- ===== STEP 1: MEMBER PROFILE ===== -->
+          <div class="form-step active p-6 sm:p-8 space-y-6" id="step1Panel">
+            <div class="space-y-1">
+              <h3 class="font-display text-2xl text-forest-900">Member Profile</h3>
+              <p class="text-sm text-forest-500">Wasifu wa Mwanachama — your personal and trade identity.</p>
+            </div>
+
+            <!-- Full Name -->
+            <div>
+              <label for="fullName" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Full Name / Jina Kamili <span class="text-red-500">*</span></label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-forest-400 pointer-events-none"><i class="fa-solid fa-user text-sm"></i></span>
+                <input type="text" id="fullName" name="fullName" required placeholder="e.g. Grace Auma Okoth"
+                       class="field-input w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 placeholder-slate-400 text-sm">
+              </div>
+              <p class="mt-1.5 text-xs text-red-500 hidden" id="nameError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Full name is required to initialize security verification.</p>
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label for="phoneNumber" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Phone Number / Nambari ya Simu <span class="text-red-500">*</span></label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-forest-700 font-mono text-sm font-bold pointer-events-none">+254</span>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="7XXXXXXXX"
+                       class="field-input w-full pl-16 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 placeholder-slate-400 text-sm font-mono tracking-wider">
+                <span class="absolute inset-y-0 right-0 pr-4 flex items-center hidden" id="phoneValidIcon">
+                  <i class="fa-solid fa-circle-check text-emerald-500 text-sm"></i>
+                </span>
+              </div>
+              <p class="mt-1.5 text-xs text-red-500 hidden" id="phoneError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Enter a valid 9-digit Kenyan number (Safaricom: 7XX, Airtel: 1XX).</p>
+              <p class="mt-1 text-xs text-forest-400 font-mono" id="phoneFormatted"></p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Location -->
+              <div>
+                <label for="marketLocation" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Primary Market <span class="text-red-500">*</span></label>
+                <div class="relative">
+                  <select id="marketLocation" name="marketLocation" required
+                          class="field-input w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 text-sm appearance-none pr-10">
+                    <option value="" disabled selected>Select market center...</option>
+                    <option value="Kongowea Market">Kongowea Market</option>
+                    <option value="Marikiti Mombasa">Marikiti Mombasa</option>
+                    <option value="Bamburi Central">Bamburi Central</option>
+                    <option value="Miritini Junction">Miritini Junction</option>
+                    <option value="Likoni Mainland">Likoni Mainland</option>
+                  </select>
+                  <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-forest-400"><i class="fa-solid fa-chevron-down text-xs"></i></span>
                 </div>
+                <p class="mt-1.5 text-xs text-red-500 hidden" id="locationError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Please select your market hub.</p>
+              </div>
+
+              <!-- Occupation -->
+              <div>
+                <label for="occupation" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Trade Type <span class="text-red-500">*</span></label>
+                <div class="relative">
+                  <select id="occupation" name="occupation" required
+                          class="field-input w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 text-sm appearance-none pr-10">
+                    <option value="" disabled selected>Select your trade...</option>
+                    <option value="Informal Market Vendor">Informal Market Vendor (Mama Mboga)</option>
+                    <option value="Agricultural Wholesaler">Agricultural Wholesaler (Maize / Produce)</option>
+                    <option value="Boda Boda Operator">Boda Boda / Logistics Operator</option>
+                    <option value="Chama Retail Trader">Chama Retail Textile Trader</option>
+                    <option value="Formal Employee">Formal Salaried Employee</option>
+                  </select>
+                  <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-forest-400"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                </div>
+                <p class="mt-1.5 text-xs text-red-500 hidden" id="occupationError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Please select your trade sector.</p>
+              </div>
             </div>
 
-            <h3>3. Ombi la Mkopo (Loan Particulars)</h3>
+            <!-- Step 1 Next button -->
+            <div class="pt-2">
+              <button type="button" onclick="goToStep(2)" class="w-full py-4 rounded-2xl font-bold text-white text-sm shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
+                      style="background: linear-gradient(135deg, #166038, #1e8049);">
+                Continue to Cash Flow <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
 
-            <div class="form-group">
-                <label for="loanAmount">Requested Amount / Kiasi cha Mkopo (KES)</label>
-                <input type="number" id="loanAmount" name="loanAmount" min="1000" max="250000" placeholder="e.g., 12000" required>
-                <span class="hunt-hint">* Note: Amounts ≤ KES 15,000 are triaged directly by our digital Guardian Agent for fast settlement. Greater amounts route to the Hunter Agent for Human-in-the-Loop context matching.</span>
+          <!-- ===== STEP 2: CASH FLOW ===== -->
+          <div class="form-step p-6 sm:p-8 space-y-6" id="step2Panel">
+            <div class="space-y-1">
+              <h3 class="font-display text-2xl text-forest-900">Cash Flow Dynamics</h3>
+              <p class="text-sm text-forest-500">Mzunguko wa Fedha na Mavuno — seasonal trade patterns realign your repayment cycle.</p>
             </div>
 
-            <div class="form-group">
-                <label for="loanPurpose">Detailed Purpose of Funds / Sababu ya Mkopo</label>
-                <textarea id="loanPurpose" name="loanPurpose" rows="3" placeholder="Tell us how these funds will stabilize your crop stock or business cycle..." required></textarea>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Weekly Revenue -->
+              <div>
+                <label for="weeklyRevenue" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Weekly Revenue (KES) <span class="text-red-500">*</span></label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-forest-500 font-mono text-xs font-bold pointer-events-none">KES</span>
+                  <input type="number" id="weeklyRevenue" name="weeklyRevenue" min="1" required placeholder="e.g. 8500"
+                         class="field-input w-full pl-14 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 placeholder-slate-400 text-sm font-mono">
+                </div>
+                <p class="mt-1.5 text-xs text-red-500 hidden" id="revenueError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Enter a valid weekly revenue figure.</p>
+              </div>
+
+              <!-- Dependents -->
+              <div>
+                <label for="dependents" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Household Dependents <span class="text-red-500">*</span></label>
+                <input type="number" id="dependents" name="dependents" min="0" max="25" required placeholder="Number of dependents"
+                       class="field-input w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 placeholder-slate-400 text-sm">
+                <p class="mt-1.5 text-xs text-red-500 hidden" id="dependentsError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Enter a valid dependent count (0–25).</p>
+              </div>
             </div>
 
-            <div class="ethical-consent-box">
-                <label class="checkbox-label" style="font-weight: bold; margin-bottom: 0.5rem;">
-                    <input type="checkbox" name="dpaConsent" value="Accepted" required>
-                    I Accept data profiling terms / Nakubali Masharti ya Data
-                </label>
-                <p>By submitting, you explicitly opt into Ujima SACCO's localized analytics pipeline. In absolute obedience to the <strong>Kenya Data Protection Act 2022</strong>, your personal identifiable information (PII) is encrypted, highly anonymized to maintain your village privacy (k-anonymity), and strictly hosted locally within the sovereign <strong>AWS Africa (Cape Town) region</strong>. Your records will never be exported to train foreign datasets.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Peak Months -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Peak Months <span class="text-[10px] font-normal normal-case">(Mavuno Nyingi)</span></label>
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3.5">
+                  <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" name="peakMonths" value="March-April" class="custom-checkbox">
+                    <span class="text-sm text-forest-700 group-hover:text-forest-900 transition-colors">
+                      March / April
+                      <span class="block text-xs text-forest-400 font-medium mt-0.5">Main Crop Harvest Cycles</span>
+                    </span>
+                  </label>
+                  <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" name="peakMonths" value="Sept-Oct" class="custom-checkbox">
+                    <span class="text-sm text-forest-700 group-hover:text-forest-900 transition-colors">
+                      Sept / Oct
+                      <span class="block text-xs text-forest-400 font-medium mt-0.5">Short Rains Harvest Peaks</span>
+                    </span>
+                  </label>
+                  <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" name="peakMonths" value="Dec-Jan" class="custom-checkbox">
+                    <span class="text-sm text-forest-700 group-hover:text-forest-900 transition-colors">
+                      Dec / Jan
+                      <span class="block text-xs text-forest-400 font-medium mt-0.5">Festive Demand Spikes</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Lean Months -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Lean Months <span class="text-[10px] font-normal normal-case">(Kipato Chini)</span></label>
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3.5">
+                  <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" name="leanMonths" value="Jan-Feb" class="custom-checkbox">
+                    <span class="text-sm text-forest-700 group-hover:text-forest-900 transition-colors">
+                      Jan / Feb
+                      <span class="block text-xs text-forest-400 font-medium mt-0.5">School Fees Pressure</span>
+                    </span>
+                  </label>
+                  <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" name="leanMonths" value="May-June" class="custom-checkbox">
+                    <span class="text-sm text-forest-700 group-hover:text-forest-900 transition-colors">
+                      May / June
+                      <span class="block text-xs text-forest-400 font-medium mt-0.5">Heavy Rains Logistics</span>
+                    </span>
+                  </label>
+                  <label class="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" name="leanMonths" value="August" class="custom-checkbox">
+                    <span class="text-sm text-forest-700 group-hover:text-forest-900 transition-colors">
+                      August
+                      <span class="block text-xs text-forest-400 font-medium mt-0.5">Pre-Harvest Seasonal Lull</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
             </div>
 
-            <button type="submit">Wasilisha Ombi (Submit Application to Multi-Agent Ecosystem)</button>
+            <!-- Navigation -->
+            <div class="flex gap-3 pt-2">
+              <button type="button" onclick="goToStep(1)" class="flex-1 py-4 rounded-2xl font-bold text-forest-700 text-sm border border-forest-200 bg-forest-50 hover:bg-forest-100 transition-all duration-200 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-arrow-left text-xs"></i> Back
+              </button>
+              <button type="button" onclick="goToStep(3)" class="flex-[3] py-4 rounded-2xl font-bold text-white text-sm shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
+                      style="background: linear-gradient(135deg, #166038, #1e8049);">
+                Continue to Loan Details <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
 
+          <!-- ===== STEP 3: LOAN PARTICULARS ===== -->
+          <div class="form-step p-6 sm:p-8 space-y-6" id="step3Panel">
+            <div class="space-y-1">
+              <h3 class="font-display text-2xl text-forest-900">Loan Particulars</h3>
+              <p class="text-sm text-forest-500">Ombi la Mkopo — specify your funding request and purpose.</p>
+            </div>
+
+            <!-- Loan Amount with live threshold indicator -->
+            <div>
+              <label for="loanAmount" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Requested Amount (KES) <span class="text-red-500">*</span></label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-forest-500 font-mono text-xs font-bold pointer-events-none">KES</span>
+                <input type="number" id="loanAmount" name="loanAmount" min="1000" max="250000" required placeholder="e.g. 12000"
+                       class="field-input w-full pl-14 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 placeholder-slate-400 text-sm font-mono"
+                       oninput="updateLoanThreshold()">
+              </div>
+              <!-- Live threshold indicator -->
+              <div class="mt-3 p-3.5 rounded-xl border transition-all duration-300" id="thresholdIndicator"
+                   style="background: #f0fdf4; border-color: #d1ecdc;">
+                <div class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-circle-info text-sm mt-0.5" id="thresholdIcon" style="color: #166038;"></i>
+                  <div>
+                    <div class="text-xs font-bold text-forest-800" id="thresholdTitle">Enter your loan amount above</div>
+                    <div class="text-xs text-forest-600 mt-0.5" id="thresholdDesc">Amounts ≤ KES 15,000 → Guardian Agent instant path. Above → Hunter Board review.</div>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-1.5 text-xs text-red-500 hidden" id="amountError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Enter a loan value between KES 1,000 and KES 250,000.</p>
+            </div>
+
+            <!-- Loan Purpose -->
+            <div>
+              <label for="loanPurpose" class="block text-xs font-bold uppercase tracking-wider text-forest-500 mb-2">Detailed Purpose / Sababu ya Mkopo <span class="text-red-500">*</span></label>
+              <textarea id="loanPurpose" name="loanPurpose" rows="4" required
+                        placeholder="Explain how these funds will stabilize your stock, purchase wholesale items, or buy seeds for next planting season..."
+                        class="field-input w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-forest-900 placeholder-slate-400 text-sm resize-none leading-relaxed"></textarea>
+              <p class="mt-1.5 text-xs text-red-500 hidden" id="purposeError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Please describe your intended use of funds.</p>
+            </div>
+
+            <!-- Consent -->
+            <div class="p-5 rounded-2xl border" style="background: #fffbeb; border-color: #fde68a;">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="consentCheck" name="consentCheck" required class="custom-checkbox mt-0.5">
+                <div>
+                  <span class="text-sm font-bold text-forest-900 block mb-1">I accept the Ethical Data Profiling & Sovereign Hosting Terms</span>
+                  <span class="text-xs text-forest-600 leading-relaxed">
+                    In compliance with Kenya's <strong>Data Protection Act 2022</strong>, your inputs are secured, anonymized (k-anonymity), and hosted within local sovereign African network nodes. Your data will never train external models.
+                  </span>
+                </div>
+              </label>
+              <p class="mt-2.5 text-xs text-red-500 hidden ml-7" id="consentError"><i class="fa-solid fa-circle-exclamation mr-1"></i>Your active consent is required to proceed.</p>
+            </div>
+
+            <!-- Navigation + Submit -->
+            <div class="flex gap-3 pt-2">
+              <button type="button" onclick="goToStep(2)" class="flex-1 py-4 rounded-2xl font-bold text-forest-700 text-sm border border-forest-200 bg-forest-50 hover:bg-forest-100 transition-all duration-200 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-arrow-left text-xs"></i> Back
+              </button>
+              <button type="submit" id="submitBtn"
+                      class="flex-[3] py-4 rounded-2xl font-bold text-white text-sm shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2.5"
+                      style="background: linear-gradient(135deg, #c9a84c, #e8c97a); color: #0c3520;">
+                <i class="fa-solid fa-paper-plane text-sm"></i>
+                Wasilisha Ombi
+              </button>
+            </div>
+          </div>
         </form>
-    </main>
+      </div>
+      <!-- /formCard -->
 
-    <footer>
-        <p>© 2026 Ujima SACCO Co-operative Society Ltd. Regulated by SASRA. Built under the Ethical Safari Frameworks.</p>
-    </footer>
 
+      <!-- ============ SIMULATION BOX ============ -->
+      <div id="simulationBox" class="hidden bg-white rounded-3xl shadow-xl border border-forest-100 overflow-hidden">
+        <!-- Header -->
+        <div class="p-8 text-center border-b border-forest-50" style="background: linear-gradient(135deg, #0c3520, #166038);">
+          <div class="relative w-20 h-20 mx-auto mb-4">
+            <svg class="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="36" stroke="rgba(201,168,76,0.3)" stroke-width="2"/>
+              <path d="M 40 4 A 36 36 0 0 1 76 40" stroke="#c9a84c" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="absolute inset-3 rounded-full flex items-center justify-center" style="background: rgba(201,168,76,0.1);">
+              <i class="fa-solid fa-microchip text-2xl text-amber-400 animate-pulse"></i>
+            </div>
+          </div>
+          <h3 class="font-display text-2xl text-white">Multi-Agent System Active</h3>
+          <p class="font-mono text-[10px] text-forest-300 mt-1 uppercase tracking-widest">Triage Sequence: UJIMA-A7</p>
+        </div>
+
+        <!-- Steps -->
+        <div class="p-6 sm:p-8 space-y-2">
+          <div class="sim-step pending" id="simStep1">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: #edf7f1;">
+              <i class="fa-solid fa-circle-notch text-sm" style="color: #166038;" id="simIcon1"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-forest-800">Security Handshake & Encryption</div>
+              <div class="text-xs text-forest-500 mt-0.5 font-mono">Ingesting encrypted secure payload via AES-256...</div>
+            </div>
+          </div>
+          <div class="sim-step pending" id="simStep2">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: #edf7f1;">
+              <i class="fa-solid fa-circle text-xs text-slate-300" id="simIcon2"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-forest-800">DPA 2022 Sovereignty Validation</div>
+              <div class="text-xs text-forest-500 mt-0.5 font-mono">Running Kenya Data Protection Act compliance checks...</div>
+            </div>
+          </div>
+          <div class="sim-step pending" id="simStep3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: #edf7f1;">
+              <i class="fa-solid fa-circle text-xs text-slate-300" id="simIcon3"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-forest-800">Guardian Agent Cash-Flow Analysis</div>
+              <div class="text-xs text-forest-500 mt-0.5 font-mono">Scoring seasonal trade velocity patterns...</div>
+            </div>
+          </div>
+          <div class="sim-step pending" id="simStep4">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: #edf7f1;">
+              <i class="fa-solid fa-circle text-xs text-slate-300" id="simIcon4"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-forest-800">Transactional Ledger Write</div>
+              <div class="text-xs text-forest-500 mt-0.5 font-mono">Writing anonymized record to sovereign data node...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated progress -->
+        <div class="px-8 pb-8">
+          <div class="h-2 rounded-full overflow-hidden" style="background: #d1ecdc;">
+            <div class="h-full rounded-full progress-bar-inner transition-all duration-700" id="simProgress" style="width: 5%;"></div>
+          </div>
+          <div class="flex justify-between mt-2">
+            <span class="font-mono text-[10px] text-forest-400">Processing pipeline...</span>
+            <span class="font-mono text-[10px] text-forest-600 font-bold" id="simPct">0%</span>
+          </div>
+        </div>
+      </div>
+      <!-- /simulationBox -->
+
+
+      <!-- ============ SUCCESS DASHBOARD ============ -->
+      <div id="successDashboard" class="hidden space-y-6" style="animation: fadeUp 0.6s ease forwards;">
+
+        <!-- Status Banner -->
+        <div class="rounded-3xl overflow-hidden shadow-xl" style="background: linear-gradient(135deg, #166038, #1e8049);">
+          <div class="p-7 sm:p-8 relative">
+            <div class="absolute right-6 bottom-4 opacity-10 pointer-events-none">
+              <i class="fa-solid fa-circle-check text-[120px] text-white"></i>
+            </div>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 relative z-10">
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(255,255,255,0.15);">
+                <i class="fa-solid fa-square-check text-3xl text-white"></i>
+              </div>
+              <div>
+                <span class="inline-block font-mono text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full mb-2" style="background: rgba(255,255,255,0.2); color: #d1ecdc;">
+                  ✓ Submission Complete
+                </span>
+                <h2 class="font-display text-2xl sm:text-3xl text-white">Application Received</h2>
+                <p class="text-forest-200 text-xs mt-1 font-mono">Ref ID: <span id="receiptRefID" class="font-bold text-amber-300"></span> &nbsp;·&nbsp; Locally signed & anonymized</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Triage Path -->
+        <div class="bg-white rounded-3xl border border-forest-100 shadow-md p-6 sm:p-8">
+          <h3 class="font-semibold text-forest-900 mb-5 flex items-center gap-2 text-base">
+            <i class="fa-solid fa-route text-amber-500"></i> Your Appraisal Path
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Guardian path -->
+            <div id="routeGuardian" class="hidden md:col-span-2 p-5 rounded-2xl border" style="background: #f0fdf4; border-color: #a4d9ba;">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background: #166038;">
+                  <i class="fa-solid fa-bolt text-amber-300 text-sm"></i>
+                </div>
+                <h4 class="font-bold text-sm text-forest-900">GUARDIAN AUTOMATED TRACK</h4>
+              </div>
+              <p class="text-xs text-forest-600 leading-relaxed">Your request is below KES 15,000. Our Guardian AI agent handles this instantly. You will receive an SMS decision within minutes.</p>
+            </div>
+            <!-- Hunter path -->
+            <div id="routeHunter" class="hidden md:col-span-2 p-5 rounded-2xl border" style="background: #eff6ff; border-color: #bfdbfe;">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background: #2563eb;">
+                  <i class="fa-solid fa-user-gear text-white text-sm"></i>
+                </div>
+                <h4 class="font-bold text-sm text-blue-900">HUNTER BOARD REVIEW TRACK</h4>
+              </div>
+              <p class="text-xs text-blue-700 leading-relaxed">Your request exceeds KES 15,000 and requires context evaluation by local SACCO directors. A board officer will contact you with custom terms.</p>
+            </div>
+            <!-- Score dial -->
+            <div class="p-5 rounded-2xl border border-forest-100 bg-slate-50 text-center flex flex-col items-center justify-center gap-1">
+              <div class="font-display text-3xl" style="color: #166038;">99%</div>
+              <div class="font-mono text-[9px] uppercase tracking-widest text-forest-400 font-bold">Triage Score</div>
+              <div class="text-xs font-bold text-forest-700 mt-1" id="routeClassificationName"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Receipt Card + Phone side by side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Downloadable Receipt -->
+          <div class="bg-white rounded-3xl border border-forest-100 shadow-md overflow-hidden">
+            <div class="px-6 py-4 border-b border-forest-50 flex items-center justify-between" style="background: #0c3520;">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-forest-300 font-bold">Transaction Receipt</span>
+              <button onclick="downloadReceipt()" class="text-xs font-bold flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors" style="background: rgba(201,168,76,0.2); color: #e8c97a;">
+                <i class="fa-solid fa-download text-[10px]"></i> Download
+              </button>
+            </div>
+            <div class="p-6 receipt-card space-y-4" id="receiptContent">
+              <div class="flex items-center gap-3 pb-4 border-b border-dashed border-forest-100">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #c9a84c, #e8c97a);">
+                  <i class="fa-solid fa-building-columns text-forest-900 text-sm"></i>
+                </div>
+                <div>
+                  <div class="font-display text-base text-forest-900">Ujima SACCO</div>
+                  <div class="font-mono text-[9px] text-forest-400 uppercase tracking-widest">Credit Appraisal Receipt</div>
+                </div>
+              </div>
+              <div class="space-y-2.5 text-xs">
+                <div class="flex justify-between">
+                  <span class="text-forest-400 font-medium">Reference ID</span>
+                  <span class="font-mono font-bold text-forest-900" id="receiptRefDisplay">–</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-forest-400 font-medium">Applicant</span>
+                  <span class="font-semibold text-forest-800" id="receiptName">–</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-forest-400 font-medium">Phone</span>
+                  <span class="font-mono text-forest-800" id="receiptPhone">–</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-forest-400 font-medium">Market</span>
+                  <span class="text-forest-800" id="receiptMarket">–</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-forest-400 font-medium">Loan Requested</span>
+                  <span class="font-bold text-forest-900" id="receiptAmount">–</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-forest-400 font-medium">Triage Track</span>
+                  <span class="font-bold" id="receiptTrack">–</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-forest-400 font-medium">Timestamp</span>
+                  <span class="font-mono text-forest-500 text-[10px]" id="receiptTimestamp">–</span>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-dashed border-forest-100 flex items-center gap-2">
+                <i class="fa-solid fa-lock text-forest-400 text-xs"></i>
+                <span class="text-[10px] text-forest-400 font-mono">Encrypted · DPA 2022 Compliant · k-anonymous</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone SMS Mockup -->
+          <div class="flex items-center justify-center">
+            <div class="phone-frame w-full max-w-[240px]">
+              <!-- Notch -->
+              <div class="phone-notch mb-3"></div>
+              <!-- Status bar -->
+              <div class="phone-screen">
+                <div class="px-5 py-4">
+                  <div class="flex items-center justify-between text-[10px] text-slate-400 mb-4">
+                    <span class="font-mono">9:41 AM</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-wifi text-[8px]"></i><i class="fa-solid fa-signal text-[8px]"></i></span>
+                  </div>
+                  <!-- SMS Bubble -->
+                  <div class="space-y-3">
+                    <div class="text-center">
+                      <span class="text-[9px] text-slate-500 font-mono uppercase tracking-wider">Messages · Today</span>
+                    </div>
+                    <div class="p-3.5 rounded-2xl rounded-tl-sm text-xs leading-relaxed" style="background: #1a1a2e; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.06);">
+                      <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/10">
+                        <span class="font-bold text-amber-400 font-mono text-[10px]">
+                          <i class="fa-solid fa-comment-sms mr-1 text-[8px]"></i>UJIMA_SMS
+                        </span>
+                        <span class="text-[9px] text-slate-500 font-mono">now</span>
+                      </div>
+                      <p id="smsBodySimulation" class="text-slate-200 text-[11px] leading-relaxed">Loading...</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Home bar -->
+                <div class="flex justify-center pb-4 pt-2">
+                  <div class="w-24 h-1 rounded-full" style="background: rgba(255,255,255,0.2);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reset -->
+        <div class="text-center pb-4">
+          <button onclick="resetPortal()" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-sm border border-forest-200 bg-white hover:bg-forest-50 text-forest-700 transition-all duration-200 shadow-sm hover:shadow">
+            <i class="fa-solid fa-arrow-rotate-left text-xs"></i> Submit New Appraisal
+          </button>
+        </div>
+      </div>
+      <!-- /successDashboard -->
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer style="background: #071a10;" class="py-12 px-4 border-t border-forest-900/50">
+    <div class="max-w-7xl mx-auto text-center space-y-4">
+      <div class="flex justify-center items-center gap-2">
+        <i class="fa-solid fa-building-columns text-lg" style="color: #c9a84c;"></i>
+        <span class="font-display text-xl text-white">Ujima SACCO</span>
+      </div>
+      <p class="max-w-md mx-auto text-xs text-forest-600 leading-relaxed">
+        © 2026 Ujima SACCO Co-operative Society Ltd. Regulated under SASRA. Built in compliance with the Kenya Data Protection Act 2022.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ================================================================
+       JAVASCRIPT
+  ================================================================ -->
+  <script>
+    // ──────────────────────────────────────────────────────────────
+    // Config
+    // ──────────────────────────────────────────────────────────────
+    const N8N_URL = "https://r0el.app.n8n.cloud/webhook/e1f69293-7a58-40da-b6f1-8096300e99ee";
+
+    // ──────────────────────────────────────────────────────────────
+    // Scroll reveal
+    // ──────────────────────────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ──────────────────────────────────────────────────────────────
+    // Step wizard navigation
+    // ──────────────────────────────────────────────────────────────
+    let currentStep = 1;
+
+    function goToStep(n) {
+      // Validate before advancing
+      if (n > currentStep) {
+        if (!validateStep(currentStep)) return;
+      }
+      currentStep = n;
+
+      // Toggle panels
+      document.querySelectorAll('.form-step').forEach(p => p.classList.remove('active'));
+      document.getElementById(`step${n}Panel`).classList.add('active');
+
+      // Update circles
+      for (let i = 1; i <= 3; i++) {
+        const sc = document.getElementById(`sc${i}`);
+        const sl = document.getElementById(`sl${i}`);
+        sc.className = 'step-circle ' + (i < n ? 'done' : i === n ? 'active' : 'inactive');
+        if (i < n) sc.innerHTML = '<i class="fa-solid fa-check text-xs"></i>';
+        else sc.textContent = i;
+        if (sl) {
+          sl.style.color = i <= n ? '#166038' : '#9ca3af';
+        }
+      }
+
+      // Connectors
+      document.getElementById('conn1').style.background = n > 1 ? '#166038' : '#d1ecdc';
+      document.getElementById('conn2').style.background = n > 2 ? '#166038' : '#d1ecdc';
+
+      // Progress bar
+      const pct = n === 1 ? 33 : n === 2 ? 66 : 100;
+      document.getElementById('progressBar').style.width = pct + '%';
+
+      // Scroll to form top
+      document.getElementById('portal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // Phone live validation + format
+    // ──────────────────────────────────────────────────────────────
+    const phoneRegex = /^(?:254|\+254|0)?([71][0-9]{8})$/;
+
+    document.getElementById('phoneNumber').addEventListener('input', function () {
+      const raw = this.value.trim().replace(/\s+/g, '');
+      const match = raw.match(phoneRegex);
+      const formatted = document.getElementById('phoneFormatted');
+      const icon = document.getElementById('phoneValidIcon');
+      const err = document.getElementById('phoneError');
+      if (match) {
+        formatted.textContent = `Formatted: +254${match[1]}`;
+        formatted.style.color = '#166038';
+        icon.classList.remove('hidden');
+        err.classList.add('hidden');
+        this.classList.remove('error');
+      } else {
+        formatted.textContent = raw.length > 3 ? 'Invalid format' : '';
+        formatted.style.color = '#e11d48';
+        icon.classList.add('hidden');
+        if (raw.length > 5) {
+          err.classList.remove('hidden');
+          this.classList.add('error');
+        }
+      }
+    });
+
+    // ──────────────────────────────────────────────────────────────
+    // Loan threshold indicator
+    // ──────────────────────────────────────────────────────────────
+    function updateLoanThreshold() {
+      const amt = parseFloat(document.getElementById('loanAmount').value) || 0;
+      const ind = document.getElementById('thresholdIndicator');
+      const title = document.getElementById('thresholdTitle');
+      const desc = document.getElementById('thresholdDesc');
+      const icon = document.getElementById('thresholdIcon');
+      if (!amt) {
+        ind.style.background = '#f0fdf4'; ind.style.borderColor = '#d1ecdc';
+        title.textContent = 'Enter your loan amount above';
+        title.style.color = '#166038';
+        desc.textContent = 'Amounts ≤ KES 15,000 → Guardian instant path. Above → Hunter Board review.';
+        icon.style.color = '#166038'; icon.className = 'fa-solid fa-circle-info text-sm mt-0.5';
+        return;
+      }
+      if (amt <= 15000) {
+        ind.style.background = '#f0fdf4'; ind.style.borderColor = '#a4d9ba';
+        title.textContent = '⚡ Guardian Automated Track';
+        title.style.color = '#166038';
+        desc.textContent = `KES ${amt.toLocaleString()} qualifies for instant machine scoring. Decision via SMS in minutes.`;
+        icon.style.color = '#c9a84c'; icon.className = 'fa-solid fa-bolt text-sm mt-0.5';
+      } else {
+        ind.style.background = '#eff6ff'; ind.style.borderColor = '#bfdbfe';
+        title.textContent = '👤 Hunter Board Review Track';
+        title.style.color = '#1e40af';
+        desc.textContent = `KES ${amt.toLocaleString()} requires director audit. A SACCO officer will contact you for custom terms.`;
+        icon.style.color = '#2563eb'; icon.className = 'fa-solid fa-user-gear text-sm mt-0.5';
+      }
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // Step validation
+    // ──────────────────────────────────────────────────────────────
+    function validateStep(step) {
+      if (step === 1) {
+        let ok = true;
+        const fn = document.getElementById('fullName');
+        const ph = document.getElementById('phoneNumber');
+        const ml = document.getElementById('marketLocation');
+        const oc = document.getElementById('occupation');
+
+        ok = fieldCheck(fn, 'nameError', fn.value.trim() !== '') && ok;
+        const rawPh = ph.value.trim().replace(/\s+/g, '');
+        ok = fieldCheck(ph, 'phoneError', phoneRegex.test(rawPh)) && ok;
+        ok = fieldCheck(ml, 'locationError', ml.value !== '') && ok;
+        ok = fieldCheck(oc, 'occupationError', oc.value !== '') && ok;
+        return ok;
+      }
+      if (step === 2) {
+        let ok = true;
+        const wr = document.getElementById('weeklyRevenue');
+        const dp = document.getElementById('dependents');
+        ok = fieldCheck(wr, 'revenueError', wr.value !== '' && parseFloat(wr.value) > 0) && ok;
+        ok = fieldCheck(dp, 'dependentsError', dp.value !== '' && parseInt(dp.value) >= 0) && ok;
+        return ok;
+      }
+      return true;
+    }
+
+    function fieldCheck(el, errId, condition) {
+      const err = document.getElementById(errId);
+      if (condition) {
+        err.classList.add('hidden');
+        el.classList.remove('error');
+        return true;
+      } else {
+        err.classList.remove('hidden');
+        el.classList.add('error');
+        el.focus();
+        return false;
+      }
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // Form submit
+    // ──────────────────────────────────────────────────────────────
+    document.getElementById('ujimaForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Step 3 validation
+      const la = document.getElementById('loanAmount');
+      const lp = document.getElementById('loanPurpose');
+      const cc = document.getElementById('consentCheck');
+      let ok = true;
+
+      const laVal = parseFloat(la.value);
+      ok = fieldCheck(la, 'amountError', laVal >= 1000 && laVal <= 250000) && ok;
+      ok = fieldCheck(lp, 'purposeError', lp.value.trim().length > 10) && ok;
+
+      if (!cc.checked) {
+        document.getElementById('consentError').classList.remove('hidden');
+        ok = false;
+      } else {
+        document.getElementById('consentError').classList.add('hidden');
+      }
+      if (!ok) return;
+
+      // Build payload
+      const rawPh = document.getElementById('phoneNumber').value.trim().replace(/\s+/g, '');
+      const phMatch = rawPh.match(phoneRegex);
+      const getChecked = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(c => c.value);
+
+      const payload = {
+        name: document.getElementById('fullName').value.trim(),
+        phone: `+254${phMatch[1]}`,
+        location: document.getElementById('marketLocation').value,
+        occupation: document.getElementById('occupation').value,
+        weeklyRevenue: parseFloat(document.getElementById('weeklyRevenue').value),
+        dependents: parseInt(document.getElementById('dependents').value),
+        peakMonths: getChecked('peakMonths'),
+        leanMonths: getChecked('leanMonths'),
+        loanAmount: laVal,
+        loanPurpose: lp.value.trim(),
+        timestamp: new Date().toISOString()
+      };
+
+      // Switch to simulation
+      document.getElementById('formCard').classList.add('hidden');
+      const simBox = document.getElementById('simulationBox');
+      simBox.classList.remove('hidden');
+      simBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Fire webhook in parallel
+      const dispatchPromise = fetch(N8N_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => ({ ok: false }));
+
+      // Animate steps
+      await runSimStep(1, 800);
+      await runSimStep(2, 900);
+      await runSimStep(3, 1100);
+      await runSimStep(4, 800);
+
+      await delay(500);
+      await dispatchPromise;
+
+      // Build success screen
+      const refId = `UJ-${Math.floor(100000 + Math.random() * 900000)}`;
+      const isGuardian = laVal <= 15000;
+      const ts = new Date().toLocaleString('en-KE', { dateStyle: 'medium', timeStyle: 'short' });
+
+      document.getElementById('receiptRefID').textContent = refId;
+      document.getElementById('receiptRefDisplay').textContent = refId;
+      document.getElementById('receiptName').textContent = payload.name;
+      document.getElementById('receiptPhone').textContent = payload.phone;
+      document.getElementById('receiptMarket').textContent = payload.location;
+      document.getElementById('receiptAmount').textContent = `KES ${laVal.toLocaleString()}`;
+      document.getElementById('receiptTimestamp').textContent = ts;
+
+      if (isGuardian) {
+        document.getElementById('routeGuardian').classList.remove('hidden');
+        document.getElementById('routeHunter').classList.add('hidden');
+        document.getElementById('routeClassificationName').textContent = 'Guardian Automated';
+        document.getElementById('receiptTrack').textContent = '⚡ Guardian';
+        document.getElementById('receiptTrack').style.color = '#166038';
+        document.getElementById('smsBodySimulation').innerHTML =
+          `<strong style="color:#fbbf24">Ujima SMS:</strong> Habari, ${payload.name}! Your micro-loan of <strong>KES ${laVal.toLocaleString()}</strong> is being appraised by the Guardian Agent. A credit decision will be sent to <strong>${payload.phone}</strong> shortly. Ref: ${refId}`;
+      } else {
+        document.getElementById('routeHunter').classList.remove('hidden');
+        document.getElementById('routeGuardian').classList.add('hidden');
+        document.getElementById('routeClassificationName').textContent = 'Hunter Board Review';
+        document.getElementById('receiptTrack').textContent = '👤 Hunter Board';
+        document.getElementById('receiptTrack').style.color = '#2563eb';
+        document.getElementById('smsBodySimulation').innerHTML =
+          `<strong style="color:#fbbf24">Ujima SMS:</strong> Habari, ${payload.name}. Your application for <strong>KES ${laVal.toLocaleString()}</strong> has been routed to the Mombasa board. A SACCO director will call <strong>${payload.phone}</strong> to verify trade inventory. Ref: ${refId}`;
+      }
+
+      simBox.classList.add('hidden');
+      const dash = document.getElementById('successDashboard');
+      dash.classList.remove('hidden');
+      dash.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────────────
+    // Simulation step runner
+    // ──────────────────────────────────────────────────────────────
+    async function runSimStep(n, ms) {
+      const stepEl = document.getElementById(`simStep${n}`);
+      const iconEl = document.getElementById(`simIcon${n}`);
+      stepEl.classList.remove('pending');
+      stepEl.classList.add('running');
+      iconEl.className = 'fa-solid fa-circle-notch text-sm animate-spin';
+      iconEl.style.color = '#166038';
+
+      const pct = n * 25;
+      document.getElementById('simProgress').style.width = pct + '%';
+      document.getElementById('simPct').textContent = pct + '%';
+
+      await delay(ms);
+      stepEl.classList.remove('running');
+      stepEl.classList.add('done');
+      iconEl.className = 'fa-solid fa-circle-check text-sm animate-tick';
+      iconEl.style.color = '#166038';
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // Helpers
+    // ──────────────────────────────────────────────────────────────
+    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function resetPortal() {
+      document.getElementById('ujimaForm').reset();
+      document.getElementById('successDashboard').classList.add('hidden');
+      document.getElementById('formCard').classList.remove('hidden');
+
+      // Reset sim steps
+      for (let i = 1; i <= 4; i++) {
+        const s = document.getElementById(`simStep${i}`);
+        s.classList.remove('running', 'done');
+        s.classList.add('pending');
+        const ic = document.getElementById(`simIcon${i}`);
+        ic.className = 'fa-solid fa-circle text-xs text-slate-300';
+        ic.style.color = '';
+      }
+      document.getElementById('simProgress').style.width = '5%';
+      document.getElementById('simPct').textContent = '0%';
+      document.getElementById('phoneFormatted').textContent = '';
+      document.getElementById('phoneValidIcon').classList.add('hidden');
+      document.getElementById('routeGuardian').classList.add('hidden');
+      document.getElementById('routeHunter').classList.add('hidden');
+
+      // Reset to step 1
+      currentStep = 1;
+      goToStep(1);
+
+      document.getElementById('portal').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // Download receipt (prints as text blob)
+    // ──────────────────────────────────────────────────────────────
+    function downloadReceipt() {
+      const ref = document.getElementById('receiptRefDisplay').textContent;
+      const name = document.getElementById('receiptName').textContent;
+      const phone = document.getElementById('receiptPhone').textContent;
+      const market = document.getElementById('receiptMarket').textContent;
+      const amount = document.getElementById('receiptAmount').textContent;
+      const track = document.getElementById('receiptTrack').textContent;
+      const ts = document.getElementById('receiptTimestamp').textContent;
+
+      const content = `UJIMA SACCO — CREDIT APPRAISAL RECEIPT
+========================================
+Reference ID : ${ref}
+Applicant    : ${name}
+Phone        : ${phone}
+Market       : ${market}
+Loan Amount  : ${amount}
+Triage Track : ${track}
+Timestamp    : ${ts}
+========================================
+Encrypted · Kenya DPA 2022 Compliant
+© 2026 Ujima SACCO Co-operative Society Ltd.`;
+
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Ujima_Receipt_${ref}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
 </body>
 </html>
