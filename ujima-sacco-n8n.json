@@ -4,18 +4,261 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "e1f69293-7a58-40da-b6f1-8096300e99ee",
+        "path": "agri-lead-capture",
+        "responseMode": "responseNode",
         "options": {}
       },
+      "id": "6aba90f2-56a5-4c82-8f4a-17f45548f54b",
+      "name": "Webhook – Incoming Lead",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        0,
-        0
+        240,
+        496
       ],
-      "id": "968c6e33-5836-4bee-a0fb-4a19cfaad15c",
-      "name": "Webhook",
-      "webhookId": "e1f69293-7a58-40da-b6f1-8096300e99ee"
+      "webhookId": "96fdcf1a-fb89-4a48-9af7-9b7e2a982599"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"received\", \"message\": \"Underwriting payload processed successfully\" } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "6b9f9884-c643-4b60-a335-76c437676352",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q",
+          "mode": "list",
+          "cachedResultName": "UJIMA SACCO AI LEDGER",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.body.name }}",
+            "Market": "={{ $json.body.location }}",
+            "Trade Type": "={{ $json.body.occupation }}",
+            "Weekly Revenue": "={{ $json.body.weeklyRevenue }}",
+            "Loan Amount": "={{ $json.body.loanAmount }}",
+            "AI Decision Tier": "={{ $json.body.loanAmount <= 15000 ? \"Guardian (Auto Triage)\" : \"Hunter (Human in the loop)\" }}",
+            "Phone": "={{ $json.body.phone }}",
+            "Dependents": "={{ $json.body.dependents }}",
+            "Peak Months": "={{ $json.body.peakMonths.join(\", \") }}",
+            "Lean Months": "={{ $json.body.leanMonths.join(\", \") }}",
+            "Loan Purpose": "={{ $json.body.loanPurpose }}",
+            "Timestamp": "={{ $json.body.timestamp }}",
+            "Dpa Consent": "Accepted"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Market",
+              "displayName": "Market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trade Type",
+              "displayName": "Trade Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Weekly Revenue",
+              "displayName": "Weekly Revenue",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loan Amount",
+              "displayName": "Loan Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dpa Consent",
+              "displayName": "Dpa Consent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Decision Tier",
+              "displayName": "AI Decision Tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dependents",
+              "displayName": "Dependents",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Peak Months",
+              "displayName": "Peak Months",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lean Months",
+              "displayName": "Lean Months",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loan Purpose",
+              "displayName": "Loan Purpose",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "156eac34-2b5c-458c-a4b7-0a528db3a9e6",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        944,
+        416
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fLCqL63n4qCvGY0Q",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "instructions": "Underwrite this applicant data:\n- Name: {{ $json.body.name }}\n- Phone: {{ $json.body.phone }}\n- Location: {{ $json.body.location }}\n- Job: {{ $json.body.occupation }}\n- Revenue: KES {{ $json.body.weeklyRevenue }}\n- Dep: {{ $json.body.dependents }}\n- Peak: {{ $json.body.peakMonths.join(', ') }}\n- Lean: {{ $json.body.leanMonths.join(', ') }}\n- Loan: KES {{ $json.body.loanAmount }}\n- Purpose: {{ $json.body.loanPurpose }}\n\nRULE:\nIf Loan <= 15000, Track = \"Guardian Automated Track\". Else, Track = \"Hu",
+        "codeGeneratedForPrompt": "Underwrite this applicant data:\n- Name: {{ $json.body.name }}\n- Phone: {{ $json.body.phone }}\n- Location: {{ $json.body.location }}\n- Job: {{ $json.body.occupation }}\n- Revenue: KES {{ $json.body.weeklyRevenue }}\n- Dep: {{ $json.body.dependents }}\n- Peak: {{ $json.body.peakMonths.join(', ') }}\n- Lean: {{ $json.body.leanMonths.join(', ') }}\n- Loan: KES {{ $json.body.loanAmount }}\n- Purpose: {{ $json.body.loanPurpose }}\n\nRULE:\nIf Loan <= 15000, Track = \"Guardian Automated Track\". Else, Track = \"Hu",
+        "jsCode": "const items = $input.all();\nconst track = items.map((item) => {\n  let trackType = \"\";\n  if (item?.json?.body?.loanAmount <= 15000) {\n    trackType = \"Guardian Automated Track\";\n  } else {\n    trackType = \"Hu\";\n  }\n  return { ...item.json, track: trackType };\n});\n\nreturn track;\n"
+      },
+      "id": "a0dbbbba-a376-4360-9ce3-e727ad93e8c9",
+      "name": "AI Appraisal & Compression",
+      "type": "n8n-nodes-base.aiTransform",
+      "typeVersion": 1,
+      "position": [
+        704,
+        608
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Safely grab incoming data object\nconst rawInput = $input.first().json;\n\n// Check if we are in bypass/test mode where data is already an object containing a 'body'\nconst isDirectWebhookData = rawInput.body && typeof rawInput.body === 'object';\n\nlet parsed = {};\nlet aiResponse = '';\n\nif (!isDirectWebhookData) {\n  // Scenario A: Standard AI response parsing path\n  aiResponse = rawInput.text || rawInput.output || rawInput.content || '';\n\n  if (!aiResponse && rawInput.message) {\n    aiResponse = rawInput.message.content || rawInput.message.text || '';\n  }\n\n  if (!aiResponse) {\n    for (const key in rawInput) {\n      if (typeof rawInput[key] === 'string' && rawInput[key].trim().length > 0) {\n        aiResponse = rawInput[key];\n        break;\n      }\n    }\n  }\n\n  if (typeof rawInput === 'string') {\n    aiResponse = rawInput;\n  }\n\n  if (!aiResponse || aiResponse.trim() === \"\") {\n    throw new Error('AI Node returned no text. Keys available: ' + Object.keys(rawInput).join(', '));\n  }\n\n  // Extract JSON payload using your regex\n  const jsonMatch = aiResponse.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) {\n    throw new Error('No valid JSON brackets found. Raw response text was: ' + aiResponse);\n  }\n\n  try {\n    parsed = JSON.parse(jsonMatch[0]);\n  } catch (e) {\n    throw new Error('JSON parsing failed: ' + e.message);\n  }\n}\n\n// 2. Fetch background webhook payload data securely \n// It will look at the explicit node reference OR fallback to the current input if running directly.\nlet webhookData = {};\ntry {\n  webhookData = $('Webhook – Incoming Lead').first().json.body || {};\n} catch (err) {\n  webhookData = rawInput.body || {};\n}\n\n// 3. Fallback text generation if the AI node was bypassed \nconst finalTrack = rawInput.track || (webhookData.loanAmount <= 15000 ? \"Guardian Automated Track\" : \"Hunter Board Review Track\");\nconst emailSummary = parsed.farmer_email || `Appraisal: ${webhookData.name || 'Unknown'} (${webhookData.occupation || 'N/A'} at ${webhookData.location || 'N/A'}) requests KES ${webhookData.loanAmount || 0} (${finalTrack}). Weekly Revenue: KES ${webhookData.weeklyRevenue || 0}.`;\nconst smsSummary = parsed.sms_code_payload || `UJIMA: Habari ${webhookData.name || 'Applicant'}! Loan of KES ${webhookData.loanAmount || 0} is routing to ${finalTrack}. Ref: UJ-${Math.floor(100000 + Math.random() * 900000)}`;\n\n// 4. Return structured clean tracking data schema\nreturn [{\n  json: {\n    farmer_email: emailSummary,\n    sms_code_payload: smsSummary,\n    applicant_name: webhookData.name || 'Unknown',\n    applicant_phone: webhookData.phone || '',\n    applicant_location: webhookData.location || 'Unknown',\n    applicant_occupation: webhookData.occupation || 'Unknown',\n    weekly_revenue: webhookData.weeklyRevenue || 0,\n    dependents: webhookData.dependents || 0,\n    peak_months: Array.isArray(webhookData.peakMonths) ? webhookData.peakMonths.join(', ') : '',\n    lean_months: Array.isArray(webhookData.leanMonths) ? webhookData.leanMonths.join(', ') : '',\n    loan_amount: webhookData.loanAmount || 0,\n    loan_purpose: webhookData.loanPurpose || '',\n    timestamp: webhookData.timestamp || new Date().toISOString()\n  }\n}];"
+      },
+      "id": "147fb1e7-14b2-4cfb-be0d-1d47ee27b1f3",
+      "name": "Parse AI Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "rodgersmwangi20@gmail.com",
+        "subject": "={{ \"🌱 New Ujima SACCO Appraisal: \" + $json.applicant_name + \" – \" + $json.applicant_location }}",
+        "message": "={{ \"<h2>New Loan Application Received</h2>\" +\n\"<p><strong>Summary:</strong><br>\" + $json.farmer_email + \"</p>\" +\n\"<hr>\" +\n\"<h3>Applicant Details</h3>\" +\n\"<ul>\" +\n\"<li><strong>Name:</strong> \" + $json.applicant_name + \"</li>\" +\n\"<li><strong>Phone:</strong> \" + $json.applicant_phone + \"</li>\" +\n\"<li><strong>Location:</strong> \" + $json.applicant_location + \"</li>\" +\n\"<li><strong>Occupation:</strong> \" + $json.applicant_occupation + \"</li>\" +\n\"<li><strong>Weekly Revenue:</strong> KES \" + $json.weekly_revenue + \"</li>\" +\n\"<li><strong>Dependents:</strong> \" + $json.dependents + \"</li>\" +\n\"<li><strong>Peak Months:</strong> \" + $json.peak_months + \"</li>\" +\n\"<li><strong>Lean Months:</strong> \" + $json.lean_months + \"</li>\" +\n\"</ul>\" +\n\"<h3>Loan Request</h3>\" +\n\"<ul>\" +\n\"<li><strong>Amount:</strong> KES \" + $json.loan_amount + \"</li>\" +\n\"<li><strong>Purpose:</strong> \" + $json.loan_purpose + \"</li>\" +\n\"<li><strong>Timestamp:</strong> \" + $json.timestamp + \"</li>\" +\n\"</ul>\" }}",
+        "options": {}
+      },
+      "id": "e13c3bf4-e2c5-4c07-9562-31bbeab48e35",
+      "name": "Send Email Notification",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        592
+      ],
+      "webhookId": "bfd9dd1c-800c-48c3-81aa-7f2f2592fb6f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "sBAlelSMm4CcQ1CC",
+          "name": "Gmail OAuth2 API"
+        }
+      }
     },
     {
       "parameters": {
@@ -28,12 +271,12 @@
           },
           "conditions": [
             {
-              "id": "2b72cc98-a1c7-4596-9821-1687a0f05cff",
-              "leftValue": "={{ $json.body.loanAmount.toNumber() }}",
+              "id": "f3d59eef-06ae-4851-a271-bf92aff3f036",
+              "leftValue": "={{ $json.body.loanAmount }}",
               "rightValue": 15000,
               "operator": {
                 "type": "number",
-                "operation": "lte"
+                "operation": "gt"
               }
             }
           ],
@@ -44,246 +287,28 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        208,
-        0
+        464,
+        592
       ],
-      "id": "1d9732a6-a5c4-4b91-9975-d2dc3290cb2a",
+      "id": "a2d68b45-cd55-4af6-a13b-515f68992189",
       "name": "If"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q",
-          "mode": "list",
-          "cachedResultName": "UJIMA SACCO AI LEDGER",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "AI Decision Tier": "Guardian (Auto-Triage)",
-            "Name": "={{ $json.body.fullName }}",
-            "Market": "={{ $json.body.marketLocation }}",
-            "Trade Type": "={{ $json.body.occupation }}",
-            "Weekly Revenue": "={{ $json.body.weeklyRevenue }}",
-            "Loan Amount": "={{ $json.body.loanAmount }}",
-            "Dpa Consent": "={{ $json.body.dpaConsent }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "Name",
-              "displayName": "Name",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Market",
-              "displayName": "Market",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Trade Type",
-              "displayName": "Trade Type",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Weekly Revenue",
-              "displayName": "Weekly Revenue",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Loan Amount",
-              "displayName": "Loan Amount",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Dpa Consent",
-              "displayName": "Dpa Consent",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "AI Decision Tier",
-              "displayName": "AI Decision Tier",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        416,
-        -96
-      ],
-      "id": "b52d16e2-37fc-40cc-a17b-bdecb5348afa",
-      "name": "Append row in sheet",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "fLCqL63n4qCvGY0Q",
-          "name": "Google Sheets OAuth2 API"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q",
-          "mode": "list",
-          "cachedResultName": "UJIMA SACCO AI LEDGER",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13KdJ2iEGHm52LgmJUBD-nD20h2PVZ01oksKtry2Qt9Q/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Name": "={{ $json.body.fullName }}",
-            "Market": "={{ $json.body.marketLocation }}",
-            "Trade Type": "={{ $json.body.occupation }}",
-            "Weekly Revenue": "={{ $json.body.weeklyRevenue }}",
-            "Loan Amount": "={{ $json.body.loanAmount }}",
-            "Dpa Consent": "={{ $json.body.dpaConsent }}",
-            "AI Decision Tier": "Hunter (Human-in-the-Loop)"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "Name",
-              "displayName": "Name",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Market",
-              "displayName": "Market",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Trade Type",
-              "displayName": "Trade Type",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Weekly Revenue",
-              "displayName": "Weekly Revenue",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Loan Amount",
-              "displayName": "Loan Amount",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Dpa Consent",
-              "displayName": "Dpa Consent",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "AI Decision Tier",
-              "displayName": "AI Decision Tier",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        416,
-        96
-      ],
-      "id": "08875d84-8a4f-4e9f-92df-6882e3a76879",
-      "name": "Append row in sheet1",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "fLCqL63n4qCvGY0Q",
-          "name": "Google Sheets OAuth2 API"
-        }
-      }
     }
   ],
   "pinData": {},
   "connections": {
-    "Webhook": {
+    "Webhook – Incoming Lead": {
       "main": [
         [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          },
           {
             "node": "If",
             "type": "main",
@@ -292,18 +317,50 @@
         ]
       ]
     },
+    "Log to Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "AI Appraisal & Compression": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Output": {
+      "main": [
+        [
+          {
+            "node": "Send Email Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email Notification": {
+      "main": [
+        []
+      ]
+    },
     "If": {
       "main": [
         [
           {
-            "node": "Append row in sheet",
+            "node": "AI Appraisal & Compression",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Append row in sheet1",
+            "node": "Log to Google Sheets",
             "type": "main",
             "index": 0
           }
@@ -311,12 +368,15 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
-    "binaryMode": "separate"
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
-  "versionId": "12dcc316-68bd-4a35-aa7e-45675674feb5",
+  "versionId": "0053425d-4977-4769-8eab-7e0db1ed9826",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "2a4dad0adf3ce632301791224f1477d8e484086775cd783fd1557f666b526268"
