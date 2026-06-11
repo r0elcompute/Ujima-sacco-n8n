@@ -27,28 +27,21 @@ The Ujima SACCO platform utilizes a decoupled, asynchronous multi-agent architec
 
 ### 1. Ujima Sacco Dashboard/Front End UI
 The diagram below illustrates the prototype/front end user interface for Ujima Sacco.
-![landing page hero section](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/hero.png)
-![more information page](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/more-info.png)
-![sign up form](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/signup-form.png)
-![footer](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/footer.png)
 
-### 2. Visual Systems Architecture Map
-The diagram below illustrates the operational topology of the Ujima SACCO backend engine, mapping the ingestion, sanitization, and triage routes
+![landing page hero section](assets/hero.png)
+![more information page](assets/more-info.png)
+![sign up form](assets/signup-form.png)
+![footer](assets/footer.png)
 
-![The backend workflow in N8N](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/workflow.png)
-
-
----
-
-### 3. Production n8n Visual Workflow Pipeline
+### 2. Production n8n Visual Workflow Pipeline
 
 The visual canvas below displays the live node setup executing inside the n8n orchestration instance, displaying the automated processing from initial webhook trigger to the final ledger append actions.
 
-![Ujima SACCO n8n Backend Workflow Engine](assets/n8n-workflow-canvas.png)
+![Ujima SACCO n8n Backend Workflow Engine](assets/workflow.png)
 
 ---
 
-### 4. Architectural Implementation Highlights
+### 3. Architectural Implementation Highlights
 
 * **The Webhook Handshake Optimization:** To accommodate unstable mobile networks in regional coastal trading hubs, the primary n8n webhook response behavior is configured to **"Respond to Webhook Node"**. By emitting an immediate `200 OK` handshake upon payload ingestion, the client frontend interface is decoupled from background computation times—eliminating visual lag or app freezes.
 * **The GUARD Protocol (Defensive Type-Safety):** To handle raw form inputs cleanly, data fields undergo explicit type-casting within a dedicated JavaScript node. Converting numeric character strings into true floats (`.toNumber()`) before evaluation eliminates variable mismatches and ensures continuous platform availability during peak transactional windows.
