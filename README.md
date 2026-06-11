@@ -21,19 +21,35 @@ Traditional credit scoring models systematically exclude informal traders by dem
 
 ---
 
-## 🛠️ Technical Architecture & Workflow
+## 🛠️ Technical Architecture & System Data Flow
 
-Data flows seamlessly from the member-facing portal through a dual-track backend automation pipeline before committing to the core tracking database:
+The Ujima SACCO platform utilizes a decoupled, asynchronous multi-agent architecture. Data transforms seamlessly from a client-side application payload into an audited, structured ledger transaction through a specialized multi-track pipeline.
 
-```text
-[Netlify Front-End Form] 
-       │
-       ▼ (POST Request via JSON)
-[n8n Production Webhook]
-       │
-       ▼ (Type Casting .toNumber())
-[HUNT Trigger: Amount Check]
-       │
-       ├─► (True: <= 15,000 KES) ──► [Guardian Agent (Auto-Triage)] ──► [Log to Google Sheets]
-       │
-       └─► (False: > 15,000 KES) ──► [Hunter Agent (Human Dossier)]  ──► [Log to Google Sheets]
+### 1. Ujima Sacco Dashboard/Front End UI
+The diagram below illustrates the prototype/front end user interface for Ujima Sacco.
+![landing page hero section](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/hero.png)
+![more information page](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/more-info.png)
+![sign up form](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/signup-form.png)
+![footer](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/footer.png)
+
+### 2. Visual Systems Architecture Map
+The diagram below illustrates the operational topology of the Ujima SACCO backend engine, mapping the ingestion, sanitization, and triage routes
+
+![The backend workflow in N8N](/home/r0el/Projects/Ujima Sacco - PLP capstone/Ujima-sacco-n8n/workflow.png)
+
+
+---
+
+### 3. Production n8n Visual Workflow Pipeline
+
+The visual canvas below displays the live node setup executing inside the n8n orchestration instance, displaying the automated processing from initial webhook trigger to the final ledger append actions.
+
+![Ujima SACCO n8n Backend Workflow Engine](assets/n8n-workflow-canvas.png)
+
+---
+
+### 4. Architectural Implementation Highlights
+
+* **The Webhook Handshake Optimization:** To accommodate unstable mobile networks in regional coastal trading hubs, the primary n8n webhook response behavior is configured to **"Respond to Webhook Node"**. By emitting an immediate `200 OK` handshake upon payload ingestion, the client frontend interface is decoupled from background computation times—eliminating visual lag or app freezes.
+* **The GUARD Protocol (Defensive Type-Safety):** To handle raw form inputs cleanly, data fields undergo explicit type-casting within a dedicated JavaScript node. Converting numeric character strings into true floats (`.toNumber()`) before evaluation eliminates variable mismatches and ensures continuous platform availability during peak transactional windows.
+* **Algorithmic Risk Boundary Hard-Coding:** The **KES 15,000** threshold acts as an automated circuit breaker. Low-exposure transactions run autonomously under a zero-variance model framework, while any high-exposure asset risk is intercepted, parsed into an automated dossier, and cleanly routed to a human credit officer for local contextual evaluation.
